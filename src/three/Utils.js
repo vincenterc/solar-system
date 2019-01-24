@@ -23,3 +23,7 @@ function getDayNumber(date) {
 
   return d + UT / 24
 }
+
+function getOblecl(dayNumber) {
+  return 23.4393 - 3.563e-7 * dayNumber
+}
