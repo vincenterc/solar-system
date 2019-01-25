@@ -11,7 +11,7 @@ test('Getting DayNumber', () => {
 test('Getting obliquity of the ecliptic', () => {
   const dayNumber = -3543
 
-  expect(Math.round(getOblecl(dayNumber) * 10000) / 10000).toBe(23.4406)
+  expect(MathUtils.round(getOblecl(dayNumber), 4)).toBe(23.4406)
 })
 
 test('Getting Eccentric Anomaly in degrees', () => {
@@ -19,7 +19,7 @@ test('Getting Eccentric Anomaly in degrees', () => {
   const M = MathUtils.wrapTo360(sun.M.value + sun.M.variation * d)
   const e = sun.e.value + sun.e.variation * d
   const E = getEccentricAnomalyInDeg(M, e)
-  expect(Math.round(M * 10000) / 10000).toBe(104.0653)
-  expect(Math.round(e * 1000000) / 1000000).toBe(0.016713)
-  expect(Math.round(E * 10000) / 10000).toBe(104.9904)
+  expect(MathUtils.round(M, 4)).toBe(104.0653)
+  expect(MathUtils.round(e, 6)).toBe(0.016713)
+  expect(MathUtils.round(E, 4)).toBe(104.9904)
 })

@@ -9,3 +9,10 @@ export function cosd(deg) {
 export function wrapTo360(deg) {
   return deg - Math.floor(deg / 360) * 360
 }
+
+export function round(value, numOfDecimals = 0) {
+  return (
+    Math.round(value * Math.pow(10, numOfDecimals)) /
+    Math.pow(10, numOfDecimals)
+  )
+}
