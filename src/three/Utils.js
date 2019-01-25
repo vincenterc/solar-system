@@ -1,9 +1,5 @@
 // "day number" from 2000 Jan 0.0 TDT, which is the same as 1999 Dec 31.0 TDT
-// d for 19 april 1990, at 0:00 UT: -3543
-// const date = new Date('1990-04-19T00:00:00')
-// console.log('dayNumber: ', getDayNumber(date))
-
-function getDayNumber(date) {
+export function getDayNumber(date) {
   const y = date.getFullYear()
   const m = date.getMonth() + 1
   const D = date.getDate()
@@ -24,6 +20,6 @@ function getDayNumber(date) {
   return d + UT / 24
 }
 
-function getOblecl(dayNumber) {
+export function getOblecl(dayNumber) {
   return 23.4393 - 3.563e-7 * dayNumber
 }
