@@ -49,3 +49,11 @@ export function getRadialDistance(E, e) {
 export function getTrueLongitude(N, w, v) {
   return MathUtils.wrapTo360(N + w + v)
 }
+
+export function getPosInEclRectCoord(r, longitude) {
+  return {
+    x: r * MathUtils.cosd(longitude),
+    y: r * MathUtils.sind(longitude),
+    z: 0,
+  }
+}

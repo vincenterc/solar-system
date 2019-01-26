@@ -5,6 +5,7 @@ import {
   getTrueAnomaly,
   getRadialDistance,
   getTrueLongitude,
+  getPosInEclRectCoord,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -61,4 +62,14 @@ test('Getting true longitude', () => {
   expect(N).toBe(0)
   expect(w).toBe(282.7735)
   expect(MathUtils.round(getTrueLongitude(N, w, v), 4)).toBe(28.6869)
+})
+
+test('Getting position in ecliptic rectangular coordinates', () => {
+  const r = 1.004323
+  const l = 28.6869
+  const { x, y, z } = getPosInEclRectCoord(r, l)
+
+  expect(MathUtils.round(x, 6)).toBe(0.881048)
+  expect(MathUtils.round(y, 6)).toBe(0.482098)
+  expect(z).toBe(0)
 })
