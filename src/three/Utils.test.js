@@ -4,6 +4,7 @@ import {
   getEccentricAnomalyInDeg,
   getTrueAnomaly,
   getRadialDistance,
+  getTrueLongitude,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -43,4 +44,21 @@ test('Radial distance', () => {
   const e = 0.016713
 
   expect(MathUtils.round(getRadialDistance(E, e), 6)).toBe(1.004323)
+})
+
+test('Getting true longitude', () => {
+  const d = -3543
+  const N = MathUtils.wrapTo360(sun.N.value + sun.N.variation * d)
+  const w = MathUtils.round(
+    MathUtils.wrapTo360(sun.w.value + sun.w.variation * d),
+    4
+  )
+  const M = MathUtils.wrapTo360(sun.M.value + sun.M.variation * d)
+  const e = sun.e.value + sun.e.variation * d
+  const E = getEccentricAnomalyInDeg(M, e)
+  const v = MathUtils.round(getTrueAnomaly(E, e), 4)
+
+  expect(N).toBe(0)
+  expect(w).toBe(282.7735)
+  expect(MathUtils.round(getTrueLongitude(N, w, v), 4)).toBe(28.6869)
 })

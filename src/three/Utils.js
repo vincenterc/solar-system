@@ -45,3 +45,7 @@ export function getRadialDistance(E, e) {
 
   return Math.sqrt(x * x + y * y)
 }
+
+export function getTrueLongitude(N, w, v) {
+  return MathUtils.wrapTo360(N + w + v)
+}
