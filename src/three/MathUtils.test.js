@@ -1,4 +1,4 @@
-import { sind, cosd, wrapTo360, round } from './MathUtils'
+import { sind, cosd, atan2d, wrapTo360, round } from './MathUtils'
 
 test('sine function in degrees', () => {
   expect(sind(90)).toBe(1)
@@ -8,6 +8,13 @@ test('sine function in degrees', () => {
 test('cosine function in degrees', () => {
   expect(Math.round(cosd(90))).toBe(0)
   expect(cosd(180)).toBe(-1)
+})
+
+test('arctangent function with 2 arguments, y/x, in degrees', () => {
+  expect(atan2d(1, 1)).toBe(45)
+  expect(atan2d(1, -1)).toBe(135)
+  expect(atan2d(-1, -1)).toBe(225)
+  expect(atan2d(-1, 1)).toBe(315)
 })
 
 test('Reducing an angle to between 0 and 360 degrees', () => {
