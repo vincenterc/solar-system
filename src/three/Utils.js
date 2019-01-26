@@ -65,3 +65,11 @@ export function getPosInEquatRectCoord(xecl, yecl, zecl, oblecl) {
     z: yecl * MathUtils.sind(oblecl) + zecl * MathUtils.cosd(oblecl),
   }
 }
+
+export function getRightAscension(xequat, yequat) {
+  return MathUtils.atan2d(yequat, xequat)
+}
+
+export function getDeclination(xequat, yequat, zequat) {
+  return MathUtils.atan2d(zequat, Math.sqrt(xequat * xequat + yequat * yequat))
+}

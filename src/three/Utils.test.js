@@ -7,6 +7,8 @@ import {
   getTrueLongitude,
   getPosInEclRectCoord,
   getPosInEquatRectCoord,
+  getRightAscension,
+  getDeclination,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -85,4 +87,21 @@ test('Getting position in equatorial rectangular coordinates', () => {
   expect(MathUtils.round(x, 6)).toBe(0.881048)
   expect(MathUtils.round(y, 6)).toBe(0.442312)
   expect(MathUtils.round(z, 6)).toBe(0.191778)
+})
+
+test('Getting right ascension', () => {
+  const xequat = 0.881048
+  const yequat = 0.442312
+  const ra = getRightAscension(xequat, yequat)
+
+  expect(MathUtils.round(ra, 4)).toBe(26.658)
+})
+
+test('Getting declination', () => {
+  const xequat = 0.881048
+  const yequat = 0.442312
+  const zequat = 0.191778
+  const dcel = getDeclination(xequat, yequat, zequat)
+
+  expect(MathUtils.round(dcel, 4)).toBe(11.0084)
 })
