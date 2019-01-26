@@ -3,6 +3,7 @@ import {
   getOblecl,
   getEccentricAnomalyInDeg,
   getTrueAnomaly,
+  getRadialDistance,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -35,4 +36,11 @@ test('Getting true anomaly in degrees', () => {
   const e = 0.016713
 
   expect(MathUtils.round(getTrueAnomaly(E, e), 4)).toBe(105.9134)
+})
+
+test('Radial distance', () => {
+  const E = 104.9904
+  const e = 0.016713
+
+  expect(MathUtils.round(getRadialDistance(E, e), 6)).toBe(1.004323)
 })

@@ -35,5 +35,13 @@ export function getEccentricAnomalyInDeg(M, e) {
 export function getTrueAnomaly(E, e) {
   const x = MathUtils.cosd(E) - e
   const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
+
   return MathUtils.atan2d(y, x)
+}
+
+export function getRadialDistance(E, e) {
+  const x = MathUtils.cosd(E) - e
+  const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
+
+  return Math.sqrt(x * x + y * y)
 }
