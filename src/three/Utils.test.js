@@ -1,4 +1,9 @@
-import { getDayNumber, getOblecl, getEccentricAnomalyInDeg } from './Utils'
+import {
+  getDayNumber,
+  getOblecl,
+  getEccentricAnomalyInDeg,
+  getTrueAnomaly,
+} from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
 
@@ -22,4 +27,11 @@ test('Getting Eccentric Anomaly in degrees', () => {
   expect(MathUtils.round(M, 4)).toBe(104.0653)
   expect(MathUtils.round(e, 6)).toBe(0.016713)
   expect(MathUtils.round(E, 4)).toBe(104.9904)
+})
+
+test('Getting true anomaly in degrees', () => {
+  const E = 104.9904
+  const e = 0.016713
+
+  expect(MathUtils.round(getTrueAnomaly(E, e), 4)).toBe(105.9134)
 })

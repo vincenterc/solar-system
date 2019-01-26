@@ -31,3 +31,9 @@ export function getEccentricAnomalyInDeg(M, e) {
     M + e * (180 / Math.PI) * MathUtils.sind(M) * (1.0 + e * MathUtils.cosd(M))
   )
 }
+
+export function getTrueAnomaly(E, e) {
+  const x = MathUtils.cosd(E) - e
+  const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
+  return MathUtils.atan2d(y, x)
+}
