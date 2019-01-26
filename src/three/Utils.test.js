@@ -6,6 +6,7 @@ import {
   getRadialDistance,
   getTrueLongitude,
   getPosInEclRectCoord,
+  getPosInEquatRectCoord,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -72,4 +73,16 @@ test('Getting position in ecliptic rectangular coordinates', () => {
   expect(MathUtils.round(x, 6)).toBe(0.881048)
   expect(MathUtils.round(y, 6)).toBe(0.482098)
   expect(z).toBe(0)
+})
+
+test('Getting position in equatorial rectangular coordinates', () => {
+  const xecl = 0.881048
+  const yecl = 0.482098
+  const zecl = 0
+  const oblecl = 23.4406
+  const { x, y, z } = getPosInEquatRectCoord(xecl, yecl, zecl, oblecl)
+
+  expect(MathUtils.round(x, 6)).toBe(0.881048)
+  expect(MathUtils.round(y, 6)).toBe(0.442312)
+  expect(MathUtils.round(z, 6)).toBe(0.191778)
 })

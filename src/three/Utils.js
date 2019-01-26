@@ -57,3 +57,11 @@ export function getPosInEclRectCoord(r, longitude) {
     z: 0,
   }
 }
+
+export function getPosInEquatRectCoord(xecl, yecl, zecl, oblecl) {
+  return {
+    x: xecl,
+    y: yecl * MathUtils.cosd(oblecl) - zecl * MathUtils.sind(oblecl),
+    z: yecl * MathUtils.sind(oblecl) + zecl * MathUtils.cosd(oblecl),
+  }
+}
