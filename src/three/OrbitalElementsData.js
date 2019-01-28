@@ -209,7 +209,7 @@ export const uranus = {
     variation: 7.45e-9,
   },
   M: {
-    vlaue: 142.5905,
+    value: 142.5905,
     variation: 0.011725806,
   },
 }
