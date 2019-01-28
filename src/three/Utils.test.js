@@ -10,6 +10,7 @@ import {
   getRightAscension,
   getDeclination,
   getMeanLongitude,
+  getsiderealTime,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -118,4 +119,13 @@ test('Getting declination', () => {
   const dcel = getDeclination(xequat, yequat, zequat)
 
   expect(MathUtils.round(dcel, 4)).toBe(11.0084)
+})
+
+test('Getting sidereal time', () => {
+  const UT = 0
+  const longitude = 15
+  const L = 26.8388
+  const siderealTime = getsiderealTime(UT, longitude, L)
+
+  expect(MathUtils.round(siderealTime, 5)).toBe(14.78925)
 })

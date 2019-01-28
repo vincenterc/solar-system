@@ -77,3 +77,9 @@ export function getRightAscension(xequat, yequat) {
 export function getDeclination(xequat, yequat, zequat) {
   return MathUtils.atan2d(zequat, Math.sqrt(xequat * xequat + yequat * yequat))
 }
+
+export function getsiderealTime(UT, longitude, L) {
+  const GMST0 = MathUtils.wrapTo360(L + 180) / 15
+
+  return GMST0 + UT + longitude / 15
+}
