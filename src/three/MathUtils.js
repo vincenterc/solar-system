@@ -20,3 +20,9 @@ export function round(value, numOfDecimals = 0) {
     Math.pow(10, numOfDecimals)
   )
 }
+
+export function countDomicials(value) {
+  if (Math.floor(value) !== value)
+    return value.toString().split('.')[1].length || 0
+  return 0
+}

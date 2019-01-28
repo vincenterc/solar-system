@@ -1,4 +1,11 @@
-import { sind, cosd, atan2d, wrapTo360, round } from './MathUtils'
+import {
+  sind,
+  cosd,
+  atan2d,
+  wrapTo360,
+  round,
+  countDomicials,
+} from './MathUtils'
 
 test('sine function in degrees', () => {
   expect(sind(90)).toBe(1)
@@ -31,4 +38,9 @@ test('Reducing an angle to between 0 and 360 degrees', () => {
 test('Round a value to the nearest integer', () => {
   expect(round(123.45678)).toBe(123)
   expect(round(123.45678, 2)).toBe(123.46)
+})
+
+test('Count nunber of domicials', () => {
+  expect(countDomicials(23)).toBe(0)
+  expect(countDomicials(23.453453)).toBe(6)
 })
