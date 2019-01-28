@@ -9,6 +9,7 @@ import {
   getPosInEquatRectCoord,
   getRightAscension,
   getDeclination,
+  getMeanLongitude,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -48,6 +49,19 @@ test('Radial distance', () => {
   const e = 0.016713
 
   expect(MathUtils.round(getRadialDistance(E, e), 6)).toBe(1.004323)
+})
+
+test('Getting mean longitude', () => {
+  const d = -3543
+  const N = MathUtils.wrapTo360(sun.N.value + sun.N.variation * d)
+  const w = MathUtils.round(
+    MathUtils.wrapTo360(sun.w.value + sun.w.variation * d),
+    4
+  )
+  const M = MathUtils.wrapTo360(sun.M.value + sun.M.variation * d)
+  const L = MathUtils.round(getMeanLongitude(N, w, M), 4)
+
+  expect(L).toBe(26.8388)
 })
 
 test('Getting true longitude', () => {
