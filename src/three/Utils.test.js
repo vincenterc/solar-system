@@ -14,6 +14,10 @@ import {
   getMeanLongitude,
   getsiderealTime,
   getPosInEclSphericalCoord,
+  getPerturbationsInJupiterLong,
+  getPerturbationsInSaturnLong,
+  getPerturbationsInSaturnLat,
+  getPerturbationsInUranusLong,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -174,4 +178,37 @@ test('Getting sidereal time', () => {
   const siderealTime = getsiderealTime(UT, longitude, L)
 
   expect(MathUtils.round(siderealTime, 5)).toBe(14.78925)
+})
+
+test("Get perturbations in jupiter's longitude", () => {
+  const Mj = 85.5238
+  const Ms = 198.4741
+  const perturbations = getPerturbationsInJupiterLong(Mj, Ms)
+
+  expect(MathUtils.round(perturbations, 4)).toBe(-0.012)
+})
+
+test("Get perturbations in saturn's longitude", () => {
+  const Mj = 85.5238
+  const Ms = 198.4741
+  const perturbations = getPerturbationsInSaturnLong(Mj, Ms)
+
+  expect(MathUtils.round(perturbations, 4)).toBe(-0.0699)
+})
+
+test("Get perturbations in saturn's latitude", () => {
+  const Mj = 85.5238
+  const Ms = 198.4741
+  const perturbations = getPerturbationsInSaturnLat(Mj, Ms)
+
+  expect(MathUtils.round(perturbations, 4)).toBe(0.0053)
+})
+
+test("Get perturbations in uranus' longtitude", () => {
+  const Mj = 85.5238
+  const Ms = 198.4741
+  const Mu = 101.046
+  const perturbations = getPerturbationsInUranusLong(Mj, Ms, Mu)
+
+  expect(MathUtils.round(perturbations, 4)).toBe(-0.0327)
 })

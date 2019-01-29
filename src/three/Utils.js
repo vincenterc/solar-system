@@ -125,3 +125,40 @@ export function getsiderealTime(UT, longitude, L) {
 
   return GMST0 + UT + longitude / 15
 }
+
+export function getPerturbationsInJupiterLong(Mj, Ms) {
+  return (
+    -0.332 * MathUtils.sind(2 * Mj - 5 * Ms - 67.6) -
+    0.056 * MathUtils.sind(2 * Mj - 2 * Ms + 21) +
+    0.042 * MathUtils.sind(3 * Mj - 5 * Ms + 21) -
+    0.036 * MathUtils.sind(Mj - 2 * Ms) +
+    0.022 * MathUtils.cosd(Mj - Ms) +
+    0.023 * MathUtils.sind(2 * Mj - 3 * Ms + 52) -
+    0.016 * MathUtils.sind(Mj - 5 * Ms - 69)
+  )
+}
+
+export function getPerturbationsInSaturnLong(Mj, Ms) {
+  return (
+    0.812 * MathUtils.sind(2 * Mj - 5 * Ms - 67.6) -
+    0.229 * MathUtils.cosd(2 * Mj - 4 * Ms - 2) +
+    0.119 * MathUtils.sind(Mj - 2 * Ms - 3) +
+    0.046 * MathUtils.sind(2 * Mj - 6 * Ms - 69) +
+    0.014 * MathUtils.sind(Mj - 3 * Ms + 32)
+  )
+}
+
+export function getPerturbationsInSaturnLat(Mj, Ms) {
+  return (
+    -0.02 * MathUtils.cosd(2 * Mj - 4 * Ms - 2) +
+    0.018 * MathUtils.sind(2 * Mj - 6 * Ms - 49)
+  )
+}
+
+export function getPerturbationsInUranusLong(Mj, Ms, Mu) {
+  return (
+    0.04 * MathUtils.sind(Ms - 2 * Mu + 6) +
+    0.035 * MathUtils.sind(Ms - 3 * Mu + 33) -
+    0.015 * MathUtils.sind(Mj - Mu + 20)
+  )
+}
