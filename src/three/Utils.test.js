@@ -13,6 +13,7 @@ import {
   getDeclination,
   getMeanLongitude,
   getsiderealTime,
+  getPosInEclSphericalCoord,
 } from './Utils'
 import * as MathUtils from './MathUtils'
 import { sun } from './OrbitalElementsData'
@@ -124,6 +125,17 @@ test('Get position in ecliptic rectangular coordinates', () => {
   expect(MathUtils.round(x, 6)).toBe(-0.367821)
   expect(MathUtils.round(y, 6)).toBe(0.061084)
   expect(MathUtils.round(z, 6)).toBe(0.038699)
+})
+
+test('Get position in ecliptic sherical coordinates', () => {
+  const x = -0.367821
+  const y = 0.061084
+  const z = 0.038699
+  const { r, long, lat } = getPosInEclSphericalCoord(x, y, z)
+
+  expect(MathUtils.round(r, 6)).toBe(0.374862)
+  expect(MathUtils.round(long, 4)).toBe(170.5709)
+  expect(MathUtils.round(lat, 4)).toBe(5.9255)
 })
 
 test('Getting position in equatorial rectangular coordinates', () => {
