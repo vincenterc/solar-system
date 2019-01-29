@@ -60,9 +60,9 @@ export function getTrueAnomaly(E, e) {
   return MathUtils.atan2d(y, x)
 }
 
-export function getRadialDistance(E, e) {
-  const x = MathUtils.cosd(E) - e
-  const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
+export function getRadialDistance(a, E, e) {
+  const x = a * (MathUtils.cosd(E) - e)
+  const y = a * Math.sqrt(1 - e * e) * MathUtils.sind(E)
 
   return Math.sqrt(x * x + y * y)
 }
@@ -81,6 +81,19 @@ export function getPosInEclRectCoord(r, longitude) {
     y: r * MathUtils.sind(longitude),
     z: 0,
   }
+}
+
+export function getPositionInEclRectCoord(N, i, w, r, v) {
+  const x =
+    r *
+    (MathUtils.cosd(N) * MathUtils.cosd(v + w) -
+      MathUtils.sind(N) * MathUtils.sind(v + w) * MathUtils.cosd(i))
+  const y =
+    r *
+    (MathUtils.sind(N) * MathUtils.cosd(v + w) +
+      MathUtils.cosd(N) * MathUtils.sind(v + w) * MathUtils.cosd(i))
+  const z = r * MathUtils.sind(v + w) * MathUtils.sind(i)
+  return { x, y, z }
 }
 
 export function getPosInEquatRectCoord(xecl, yecl, zecl, oblecl) {

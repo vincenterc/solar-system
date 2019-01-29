@@ -7,6 +7,7 @@ import {
   getRadialDistance,
   getTrueLongitude,
   getPosInEclRectCoord,
+  getPositionInEclRectCoord,
   getPosInEquatRectCoord,
   getRightAscension,
   getDeclination,
@@ -58,11 +59,12 @@ test('Getting true anomaly in degrees', () => {
   expect(MathUtils.round(getTrueAnomaly(E, e), 4)).toBe(105.9134)
 })
 
-test('Radial distance', () => {
+test('Getting Radial distance', () => {
+  const a = 1
   const E = 104.9904
   const e = 0.016713
 
-  expect(MathUtils.round(getRadialDistance(E, e), 6)).toBe(1.004323)
+  expect(MathUtils.round(getRadialDistance(a, E, e), 6)).toBe(1.004323)
 })
 
 test('Getting mean longitude', () => {
@@ -103,6 +105,25 @@ test('Getting position in ecliptic rectangular coordinates', () => {
   expect(MathUtils.round(x, 6)).toBe(0.881048)
   expect(MathUtils.round(y, 6)).toBe(0.482098)
   expect(z).toBe(0)
+})
+
+test('Get position in ecliptic rectangular coordinates', () => {
+  const N = 48.2163
+  const i = 7.0045
+  const w = 29.0882
+  const a = 0.387098
+  const e = 0.205633
+  const M = 69.5153
+  const E = getEccentricAnomaly(M, e)
+  const r = getRadialDistance(a, MathUtils.round(E, 4), e)
+  const v = getTrueAnomaly(E, e)
+  const { x, y, z } = getPositionInEclRectCoord(N, i, w, r, v)
+
+  expect(MathUtils.round(r, 6)).toBe(0.374862)
+  expect(MathUtils.round(v, 4)).toBe(93.0727)
+  expect(MathUtils.round(x, 6)).toBe(-0.367821)
+  expect(MathUtils.round(y, 6)).toBe(0.061084)
+  expect(MathUtils.round(z, 6)).toBe(0.038699)
 })
 
 test('Getting position in equatorial rectangular coordinates', () => {
