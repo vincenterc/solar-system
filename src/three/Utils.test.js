@@ -2,6 +2,7 @@ import {
   getDayNumber,
   getOblecl,
   getEccentricAnomalyInDeg,
+  getEccentricAnomaly,
   getTrueAnomaly,
   getRadialDistance,
   getTrueLongitude,
@@ -36,6 +37,18 @@ test('Getting eccentric anomaly in degrees', () => {
   expect(MathUtils.round(M, 4)).toBe(104.0653)
   expect(MathUtils.round(e, 6)).toBe(0.016713)
   expect(MathUtils.round(E, 4)).toBe(104.9904)
+})
+
+test('Getting eccentric anomaly', () => {
+  const MOfMoon = 266.0954
+  const eOfMoon = 0.0549
+  const EOfMoon = getEccentricAnomaly(MOfMoon, eOfMoon)
+  const MOfMercury = 69.5153
+  const eOfMercury = 0.205633
+  const EOfMercury = getEccentricAnomaly(MOfMercury, eOfMercury)
+
+  expect(MathUtils.round(EOfMoon, 4)).toBe(262.9735)
+  expect(MathUtils.round(EOfMercury, 4)).toBe(81.1572)
 })
 
 test('Getting true anomaly in degrees', () => {

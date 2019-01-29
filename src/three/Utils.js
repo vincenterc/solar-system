@@ -32,6 +32,27 @@ export function getEccentricAnomalyInDeg(M, e) {
   )
 }
 
+export function getEccentricAnomaly(M, e) {
+  const _calculateE0 = (M, e) =>
+    MathUtils.wrapTo360(
+      M +
+        e * (180 / Math.PI) * MathUtils.sind(M) * (1.0 + e * MathUtils.cosd(M))
+    )
+  const _calculateE1 = (M, E0) =>
+    E0 -
+    (E0 - (180 / Math.PI) * e * MathUtils.sind(E0) - M) /
+      (1 - e * MathUtils.cosd(E0))
+  let E0 = _calculateE0(M, e)
+  let E1 = _calculateE1(M, E0)
+
+  while (Math.abs(E0 - E1) > 0.005) {
+    E0 = E1
+    E1 = _calculateE1(M, E0)
+  }
+
+  return E1
+}
+
 export function getTrueAnomaly(E, e) {
   const x = MathUtils.cosd(E) - e
   const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
