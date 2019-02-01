@@ -1,11 +1,11 @@
 import * as THREE from 'three'
-import Cube from './Entities/Cube'
+import Cube from './Objects/Cube'
 
 export default canvas => {
   const scene = _createScene()
   const renderer = _createRenderer()
   const camera = _createCamera()
-  const entities = _createEntities()
+  const objects = _createObjects()
 
   function _createScene() {
     let scene = new THREE.Scene()
@@ -32,15 +32,15 @@ export default canvas => {
     return camera
   }
 
-  function _createEntities() {
-    const entities = [new Cube(scene)]
+  function _createObjects() {
+    const objects = [new Cube(scene)]
 
-    return entities
+    return objects
   }
 
   function update() {
-    for (let entitie of entities) {
-      entitie.update()
+    for (let object of objects) {
+      object.update()
     }
 
     renderer.render(scene, camera)
