@@ -1,11 +1,13 @@
 import * as THREE from 'three'
 import Cube from './Objects/Cube'
+import OrbitControls from './Utils/OrbitControls'
 
 export default canvas => {
   const scene = _createScene()
   const renderer = _createRenderer()
   const camera = _createCamera()
   const objects = _createObjects()
+  const orbitControls = new OrbitControls(camera, renderer.domElement)
 
   function _createScene() {
     let scene = new THREE.Scene()
