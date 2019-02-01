@@ -1,7 +1,7 @@
 import * as MathUtils from './MathUtils'
 
 // "day number" from 2000 Jan 0.0 TDT, which is the same as 1999 Dec 31.0 TDT
-export function getDayNumber(date) {
+export function calculateDayNumber(date) {
   const y = date.getFullYear()
   const m = date.getMonth() + 1
   const D = date.getDate()

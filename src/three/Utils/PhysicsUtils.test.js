@@ -1,5 +1,5 @@
 import {
-  getDayNumber,
+  calculateDayNumber,
   getOblecl,
   getEccentricAnomalyInDeg,
   getEccentricAnomaly,
@@ -21,10 +21,10 @@ import {
 } from './PhysicsUtils'
 import * as MathUtils from './MathUtils'
 
-test('Getting day number', () => {
+test('Calculate day number', () => {
   const date = new Date('1990-04-19T00:00:00')
 
-  expect(getDayNumber(date)).toBe(-3543)
+  expect(calculateDayNumber(date)).toBe(-3543)
 })
 
 test('Getting obliquity of the ecliptic', () => {
