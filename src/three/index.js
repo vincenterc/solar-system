@@ -11,8 +11,8 @@ export default containerElement => {
     return canvas
   }
 
-  function render() {
-    requestAnimationFrame(render)
+  function _render() {
+    requestAnimationFrame(_render)
     app.update()
   }
 
@@ -32,5 +32,5 @@ export default containerElement => {
 
   _addEventListeners()
   _resizeCanvas()
-  render()
+  _render()
 }

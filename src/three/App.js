@@ -5,7 +5,7 @@ export default canvas => {
   const scene = _createScene()
   const renderer = _createRenderer()
   const camera = _createCamera()
-  const entities = _createEntities(scene)
+  const entities = _createEntities()
 
   function _createScene() {
     let scene = new THREE.Scene()
@@ -32,7 +32,7 @@ export default canvas => {
     return camera
   }
 
-  function _createEntities(scene) {
+  function _createEntities() {
     const entities = [new Cube(scene)]
 
     return entities
