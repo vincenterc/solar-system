@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import Cube from './Objects/Cube'
+import Cube from './objects/Cube'
 import OrbitControls from './utils/OrbitControls'
 
 export default canvas => {
