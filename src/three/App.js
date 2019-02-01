@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import Cube from './Entities/Cube'
 
-export default () => {
+export default canvas => {
   const scene = _createScene()
   const renderer = _createRenderer()
   const camera = _createCamera()
@@ -14,8 +14,8 @@ export default () => {
   }
 
   function _createRenderer() {
-    let renderer = new THREE.WebGLRenderer()
-    renderer.setSize(window.innerWidth, window.innerHeight)
+    let renderer = new THREE.WebGLRenderer({ canvas })
+    renderer.setSize(canvas.width, canvas.height)
 
     return renderer
   }
@@ -23,7 +23,7 @@ export default () => {
   function _createCamera() {
     let camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      canvas.width / canvas.height,
       0.1,
       1000
     )
@@ -46,5 +46,11 @@ export default () => {
     renderer.render(scene, camera)
   }
 
-  return { renderer, update }
+  function resizeScene() {
+    renderer.setSize(canvas.width, canvas.height)
+    camera.aspect = canvas.width / canvas.height
+    camera.updateProjectionMatrix()
+  }
+
+  return { update, resizeScene }
 }
