@@ -6,8 +6,8 @@ import {
   saturn,
   uranus,
   neptune,
-} from './OrbitalElementsData'
-import * as MathUtils from './MathUtils'
+} from './CelestialBodiesData'
+import * as MathUtils from '../Utils/MathUtils'
 
 const PLANETS = [
   {

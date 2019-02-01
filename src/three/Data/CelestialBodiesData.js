@@ -1,4 +1,4 @@
-export const sun = {
+export const earth = {
   N: {
     value: 0.0,
     variation: 0.0,
