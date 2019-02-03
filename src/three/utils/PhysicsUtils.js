@@ -59,7 +59,7 @@ export function calculateTrueAnomalyInDeg(E, e) {
   return MathUtils.atan2d(y, x)
 }
 
-export function getRadialDistance(a, E, e) {
+export function calculateRadialDistance(a, E, e) {
   const x = a * (MathUtils.cosd(E) - e)
   const y = a * Math.sqrt(1 - e * e) * MathUtils.sind(E)
 

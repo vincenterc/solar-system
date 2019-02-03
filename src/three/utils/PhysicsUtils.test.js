@@ -3,7 +3,7 @@ import {
   getOblecl,
   calculateEccentricAnomalyInDeg,
   calculateTrueAnomalyInDeg,
-  getRadialDistance,
+  calculateRadialDistance,
   getTrueLongitude,
   getPosInEclRectCoord,
   getPositionInEclRectCoord,
@@ -55,12 +55,12 @@ test('Calculate true anomaly in degrees', () => {
   expect(MathUtils.round(calculateTrueAnomalyInDeg(E, e), 4)).toBe(105.9134)
 })
 
-test('Getting Radial distance', () => {
+test('Calculate Radial distance', () => {
   const a = 1
   const E = 104.9904
   const e = 0.016713
 
-  expect(MathUtils.round(getRadialDistance(a, E, e), 6)).toBe(1.004323)
+  expect(MathUtils.round(calculateRadialDistance(a, E, e), 6)).toBe(1.004323)
 })
 
 test('Getting mean longitude', () => {
@@ -103,7 +103,7 @@ test('Get position in ecliptic rectangular coordinates', () => {
   const e = 0.205633
   const M = 69.5153
   const E = calculateEccentricAnomalyInDeg(M, e)
-  const r = getRadialDistance(a, MathUtils.round(E, 4), e)
+  const r = calculateRadialDistance(a, MathUtils.round(E, 4), e)
   const v = calculateTrueAnomalyInDeg(E, e)
   const { x, y, z } = getPositionInEclRectCoord(N, i, w, r, v)
 
