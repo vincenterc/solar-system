@@ -1,7 +1,7 @@
 import {
   calculateDayNumber,
   getOblecl,
-  calculateEccentricAnomaly,
+  calculateEccentricAnomalyInDeg,
   calculateTrueAnomalyInDeg,
   getRadialDistance,
   getTrueLongitude,
@@ -32,16 +32,16 @@ test('Getting obliquity of the ecliptic', () => {
   expect(MathUtils.round(getOblecl(dayNumber), 4)).toBe(23.4406)
 })
 
-test('Calculate eccentric anomaly', () => {
+test('Calculate eccentric anomaly in degrees', () => {
   const MOfSun = 104.0653
   const eOfSun = 0.016713
-  const EOfSun = calculateEccentricAnomaly(MOfSun, eOfSun)
+  const EOfSun = calculateEccentricAnomalyInDeg(MOfSun, eOfSun)
   const MOfMoon = 266.0954
   const eOfMoon = 0.0549
-  const EOfMoon = calculateEccentricAnomaly(MOfMoon, eOfMoon)
+  const EOfMoon = calculateEccentricAnomalyInDeg(MOfMoon, eOfMoon)
   const MOfMercury = 69.5153
   const eOfMercury = 0.205633
-  const EOfMercury = calculateEccentricAnomaly(MOfMercury, eOfMercury)
+  const EOfMercury = calculateEccentricAnomalyInDeg(MOfMercury, eOfMercury)
 
   expect(MathUtils.round(EOfSun, 4)).toBe(104.9904)
   expect(MathUtils.round(EOfMoon, 4)).toBe(262.9735)
@@ -77,7 +77,7 @@ test('Getting true longitude', () => {
   const w = 282.7735
   const M = 104.0653
   const e = 0.016713
-  const E = calculateEccentricAnomaly(M, e)
+  const E = calculateEccentricAnomalyInDeg(M, e)
   const v = MathUtils.round(calculateTrueAnomalyInDeg(E, e), 4)
 
   expect(N).toBe(0)
@@ -102,7 +102,7 @@ test('Get position in ecliptic rectangular coordinates', () => {
   const a = 0.387098
   const e = 0.205633
   const M = 69.5153
-  const E = calculateEccentricAnomaly(M, e)
+  const E = calculateEccentricAnomalyInDeg(M, e)
   const r = getRadialDistance(a, MathUtils.round(E, 4), e)
   const v = calculateTrueAnomalyInDeg(E, e)
   const { x, y, z } = getPositionInEclRectCoord(N, i, w, r, v)

@@ -26,7 +26,7 @@ export function getOblecl(dayNumber) {
   return 23.4393 - 3.563e-7 * dayNumber
 }
 
-export function calculateEccentricAnomaly(M, e) {
+export function calculateEccentricAnomalyInDeg(M, e) {
   const _calculateE0 = (M, e) =>
     MathUtils.wrapTo360(
       M +
