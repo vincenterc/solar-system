@@ -52,7 +52,7 @@ export function calculateEccentricAnomaly(M, e) {
   return E1
 }
 
-export function getTrueAnomaly(E, e) {
+export function calculateTrueAnomalyInDeg(E, e) {
   const x = MathUtils.cosd(E) - e
   const y = Math.sqrt(1 - e * e) * MathUtils.sind(E)
 

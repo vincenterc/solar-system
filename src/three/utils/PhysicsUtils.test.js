@@ -2,7 +2,7 @@ import {
   calculateDayNumber,
   getOblecl,
   calculateEccentricAnomaly,
-  getTrueAnomaly,
+  calculateTrueAnomalyInDeg,
   getRadialDistance,
   getTrueLongitude,
   getPosInEclRectCoord,
@@ -48,11 +48,11 @@ test('Calculate eccentric anomaly', () => {
   expect(MathUtils.round(EOfMercury, 4)).toBe(81.1572)
 })
 
-test('Getting true anomaly in degrees', () => {
+test('Calculate true anomaly in degrees', () => {
   const E = 104.9904
   const e = 0.016713
 
-  expect(MathUtils.round(getTrueAnomaly(E, e), 4)).toBe(105.9134)
+  expect(MathUtils.round(calculateTrueAnomalyInDeg(E, e), 4)).toBe(105.9134)
 })
 
 test('Getting Radial distance', () => {
@@ -78,7 +78,7 @@ test('Getting true longitude', () => {
   const M = 104.0653
   const e = 0.016713
   const E = calculateEccentricAnomaly(M, e)
-  const v = MathUtils.round(getTrueAnomaly(E, e), 4)
+  const v = MathUtils.round(calculateTrueAnomalyInDeg(E, e), 4)
 
   expect(N).toBe(0)
   expect(w).toBe(282.7735)
@@ -104,7 +104,7 @@ test('Get position in ecliptic rectangular coordinates', () => {
   const M = 69.5153
   const E = calculateEccentricAnomaly(M, e)
   const r = getRadialDistance(a, MathUtils.round(E, 4), e)
-  const v = getTrueAnomaly(E, e)
+  const v = calculateTrueAnomalyInDeg(E, e)
   const { x, y, z } = getPositionInEclRectCoord(N, i, w, r, v)
 
   expect(MathUtils.round(r, 6)).toBe(0.374862)
