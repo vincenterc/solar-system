@@ -2,30 +2,36 @@ import * as THREE from 'three'
 import Cube from './objects/Cube'
 import OrbitControls from './utils/OrbitControls'
 
-export default canvas => {
-  const scene = _createScene()
-  const renderer = _createRenderer()
-  const camera = _createCamera()
-  const objects = _createObjects()
-  const orbitControls = new OrbitControls(camera, renderer.domElement)
+export default class App {
+  constructor(canvas) {
+    this.canvas = canvas
+    this.scene = this._createScene()
+    this.renderer = this._createRenderer()
+    this.camera = this._createCamera()
+    this.objects = this._createObjects()
+    this.orbitControls = new OrbitControls(
+      this.camera,
+      this.renderer.domElement
+    )
+  }
 
-  function _createScene() {
-    let scene = new THREE.Scene()
+  _createScene() {
+    const scene = new THREE.Scene()
 
     return scene
   }
 
-  function _createRenderer() {
-    let renderer = new THREE.WebGLRenderer({ canvas })
-    renderer.setSize(canvas.width, canvas.height)
+  _createRenderer() {
+    const renderer = new THREE.WebGLRenderer({ canvas: this.canvas })
+    renderer.setSize(this.canvas.width, this.canvas.height)
 
     return renderer
   }
 
-  function _createCamera() {
-    let camera = new THREE.PerspectiveCamera(
+  _createCamera() {
+    const camera = new THREE.PerspectiveCamera(
       75,
-      canvas.width / canvas.height,
+      this.canvas.width / this.canvas.height,
       0.1,
       1000
     )
@@ -34,25 +40,23 @@ export default canvas => {
     return camera
   }
 
-  function _createObjects() {
-    const objects = [new Cube(scene)]
+  _createObjects() {
+    const objects = [new Cube(this.scene)]
 
     return objects
   }
 
-  function update() {
-    for (let object of objects) {
+  update() {
+    for (let object of this.objects) {
       object.update()
     }
 
-    renderer.render(scene, camera)
+    this.renderer.render(this.scene, this.camera)
   }
 
-  function resizeScene() {
-    renderer.setSize(canvas.width, canvas.height)
-    camera.aspect = canvas.width / canvas.height
-    camera.updateProjectionMatrix()
+  resizeScene() {
+    this.renderer.setSize(this.canvas.width, this.canvas.height)
+    this.camera.aspect = this.canvas.width / this.canvas.height
+    this.camera.updateProjectionMatrix()
   }
-
-  return { update, resizeScene }
 }
