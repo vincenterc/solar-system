@@ -12,7 +12,7 @@ import {
   getDeclination,
   getMeanLongitude,
   getsiderealTime,
-  getPosInEclSphericalCoord,
+  calculatePosInEclSphericalCoord,
   getPerturbationsInJupiterLong,
   getPerturbationsInSaturnLong,
   getPerturbationsInSaturnLat,
@@ -118,7 +118,7 @@ test('Get position in ecliptic sherical coordinates', () => {
   const x = -0.367821
   const y = 0.061084
   const z = 0.038699
-  const { r, long, lat } = getPosInEclSphericalCoord(x, y, z)
+  const { r, long, lat } = calculatePosInEclSphericalCoord(x, y, z)
 
   expect(MathUtils.round(r, 6)).toBe(0.374862)
   expect(MathUtils.round(long, 4)).toBe(170.5709)

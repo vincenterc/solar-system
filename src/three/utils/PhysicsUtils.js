@@ -95,7 +95,7 @@ export function calculatePosInEclRectCoord(N, i, w, r, v) {
   return { x, y, z }
 }
 
-export function getPosInEclSphericalCoord(x, y, z) {
+export function calculatePosInEclSphericalCoord(x, y, z) {
   const r = Math.sqrt(x * x + y * y + z * z)
   const long = MathUtils.atan2d(y, x)
   const lat = MathUtils.atan2d(z, Math.sqrt(x * x + y * y))
