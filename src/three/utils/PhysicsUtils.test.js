@@ -6,7 +6,7 @@ import {
   calculateRadialDistance,
   getTrueLongitude,
   getPosInEclRectCoord,
-  getPositionInEclRectCoord,
+  calculatePosInEclRectCoord,
   getPosInEquatRectCoord,
   getRightAscension,
   getDeclination,
@@ -95,7 +95,7 @@ test('Getting position in ecliptic rectangular coordinates', () => {
   expect(z).toBe(0)
 })
 
-test('Get position in ecliptic rectangular coordinates', () => {
+test('Calculate position in ecliptic rectangular coordinates', () => {
   const N = 48.2163
   const i = 7.0045
   const w = 29.0882
@@ -105,7 +105,7 @@ test('Get position in ecliptic rectangular coordinates', () => {
   const E = calculateEccentricAnomalyInDeg(M, e)
   const r = calculateRadialDistance(a, MathUtils.round(E, 4), e)
   const v = calculateTrueAnomalyInDeg(E, e)
-  const { x, y, z } = getPositionInEclRectCoord(N, i, w, r, v)
+  const { x, y, z } = calculatePosInEclRectCoord(N, i, w, r, v)
 
   expect(MathUtils.round(r, 6)).toBe(0.374862)
   expect(MathUtils.round(v, 4)).toBe(93.0727)

@@ -82,7 +82,7 @@ export function getPosInEclRectCoord(r, longitude) {
   }
 }
 
-export function getPositionInEclRectCoord(N, i, w, r, v) {
+export function calculatePosInEclRectCoord(N, i, w, r, v) {
   const x =
     r *
     (MathUtils.cosd(N) * MathUtils.cosd(v + w) -
