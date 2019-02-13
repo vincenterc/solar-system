@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import uranusmap from '../../assets/img/uranusmap.jpg'
 
 export default class Uranus extends CelestialBody {
   color = '#99ccff'
+  map = uranusmap
 
   _orbitalElements = {
     N: {

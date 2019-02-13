@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import neptunemap from '../../assets/img/neptunemap.jpg'
 
 export default class Neptune extends CelestialBody {
   color = '#3299ff'
+  map = neptunemap
 
   _orbitalElements = {
     N: {

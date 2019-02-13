@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import mercurymap from '../../assets/img/mercurymap.jpg'
 
 export default class Mercury extends CelestialBody {
   color = '#588a7b'
+  map = mercurymap
 
   _orbitalElements = {
     N: {

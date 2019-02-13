@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import sunmap from '../../assets/img/sunmap.jpg'
 
 export default class Earth extends CelestialBody {
   color = '#ffff00'
+  map = sunmap
 
   _orbitalElements = {
     N: {

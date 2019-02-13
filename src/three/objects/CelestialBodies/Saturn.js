@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import saturnmap from '../../assets/img/saturnmap.jpg'
 
 export default class Saturn extends CelestialBody {
   color = '#ffcc99'
+  map = saturnmap
 
   _orbitalElements = {
     N: {

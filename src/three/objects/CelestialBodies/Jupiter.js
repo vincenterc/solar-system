@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import jupitermap from '../../assets/img/jupitermap.jpg'
 
 export default class Jupiter extends CelestialBody {
   color = '#ff9932'
+  map = jupitermap
 
   _orbitalElements = {
     N: {

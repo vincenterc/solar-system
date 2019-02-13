@@ -44,9 +44,11 @@ export default class App {
   }
 
   _createObjects() {
-    const celestialBodies = CelestialBodies.map(
-      CB => new CB(this.scene, this.dayNumber)
-    )
+    const celestialBodies = CelestialBodies.map(CB => {
+      const cb = new CB()
+      cb.init(this.scene, this.dayNumber)
+      return cb
+    })
     const objects = [...celestialBodies]
 
     return objects

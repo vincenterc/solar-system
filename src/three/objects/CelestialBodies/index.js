@@ -24,16 +24,40 @@ const CelestialBodies = [
 export default CelestialBodies.map(
   CB =>
     class CelestialBody {
-      constructor(scene, dayNumber) {
+      async init(scene, dayNumber) {
         this.celestialBody = new CB()
         this.celestialBody.setOrbitalElements(dayNumber)
         this.celestialBody.setPositionInRectCoord()
-        const geometry = new THREE.SphereGeometry(1, 32, 32)
-        const material = new THREE.MeshBasicMaterial({
-          color: this.celestialBody.color,
-        })
-        this.mesh = new THREE.Mesh(geometry, material)
 
+        const textureLoader = new THREE.TextureLoader()
+        const loadTexture = () =>
+          new Promise((resolve, reject) => {
+            textureLoader.load(
+              this.celestialBody.map,
+              texture => resolve(texture),
+              undefined,
+              err => reject(err)
+            )
+          })
+        let texture = null
+        try {
+          texture = await loadTexture()
+        } catch (err) {
+          console.log('err: ', err)
+        }
+
+        let material = null
+        if (texture) {
+          material = new THREE.MeshBasicMaterial({ map: texture })
+        } else {
+          material = new THREE.MeshBasicMaterial({
+            color: this.celestialBody.color,
+          })
+        }
+
+        const geometry = new THREE.SphereGeometry(1, 32, 32)
+
+        this.mesh = new THREE.Mesh(geometry, material)
         this.mesh.position.x = this.celestialBody.position.x
         this.mesh.position.y = this.celestialBody.position.y
         this.mesh.position.z = this.celestialBody.position.z

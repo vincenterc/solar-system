@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import venusmap from '../../assets/img/venusmap.jpg'
 
 export default class Venus extends CelestialBody {
   color = '#fda700'
+  map = venusmap
 
   _orbitalElements = {
     N: {

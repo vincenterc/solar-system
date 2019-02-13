@@ -1,7 +1,9 @@
 import CelestialBody from './CelestialBody'
+import marsmap from '../../assets/img/marsmap.jpg'
 
 export default class Mars extends CelestialBody {
   color = '#ff3300'
+  map = marsmap
 
   _orbitalElements = {
     N: {
